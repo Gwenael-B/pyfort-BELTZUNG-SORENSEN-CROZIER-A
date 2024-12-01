@@ -9,7 +9,7 @@ def epreuve_hasard():
 
 def bonneteau():
     L = ['A','B','C']
-    print("Bienvenue à l'épreuve des bonneteaux. Voici le but du jeu : devant vous se trouvent trois bonneteaux, la clé se trouve sous l'un d'eux. \nVous aurez deux essais pour tenter de trouver la clé. A chaque essai la clé est placée aléatoirement sous l'un des bonneteaux. Bonne chance !")
+    print("Bienvenue à l'épreuve des bonneteaux. Voici le but du jeu : devant vous se trouvent trois bonneteaux, la clé se trouve sous l'un d'eux. \nVous aurez deux essais pour tenter de trouver la clé. Au début, la clé est placée aléatoirement sous l'un des trois bonneteaux. Bonne chance !")
     print("Vous pouvez choisir un bonneteau parmi les trois : tapez A pour le premier, B pour le second et C pour le troisième.")
     nmb_tentatives = 0
     while nmb_tentatives != 2:
