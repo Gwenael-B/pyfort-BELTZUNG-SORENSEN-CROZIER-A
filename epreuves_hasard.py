@@ -1,5 +1,12 @@
 import random
 
+def epreuve_hasard():
+    nom_epreuve=random.choice(["bonneteau", "jeu_lance_des"])
+    if nom_epreuve == "bonneteau":
+        bonneteau()
+    else:
+        jeu_lance_des()
+
 def bonneteau():
     L = ['A','B','C']
     print("Bienvenue à l'épreuve des bonneteaux. Voici le but du jeu : devant vous se trouvent trois bonneteaux, la clé se trouve sous l'un d'eux. \nVous aurez deux essais pour tenter de trouver la clé. A chaque essai la clé est placée aléatoirement sous l'un des bonneteaux. Bonne chance !")
@@ -29,4 +36,27 @@ def bonneteau():
                     print("Dommage, vous n'avez pas réussi à avoir la clé. Elle se trouvait sous le bonneteau", position_cle, ". Vous avez perdu l'épreuve car vous n'avez pas réussi à trouver la clé en deux essais.")
                     return False
 
-bonneteau()
+
+def jeu_lance_des() :
+    print("Bienvenue à l'épreuve du lancer de dés. Vous allez jouer contre le maître du jeu. A chaque tour vous devrez lancer deux dés, le premier à obtenir un 6 remporte la partie. \nVous aurez un maximum de trois essais et c'est vous qui commencerez. Bonne chance !")
+    nmb_essais = 0
+    while nmb_essais != 3 :
+        print("Il vous reste", 3 - nmb_essais, "essais.")
+        a = input("Appuyez sur la touche entrée pour lancer les dés : ")
+        tuple_joueur = random.randint(1,6), random.randint(1,6)
+        print("Voici les différentes valeurs obtenues :", tuple_joueur[0], "et", tuple_joueur[1])
+        if tuple_joueur[0] == 6 or tuple_joueur[1] == 6 :
+            print("Bravo vous avez obtenu un 6. Vous gagnez donc le jeu et vous obtenez la clé.")
+            return True
+        else :
+            tuple_maitre = random.randint(1,6), random.randint(1,6)
+            print("Voici les dés obtenues par le maître du jeu :", tuple_maitre[0], "et", tuple_maitre[1])
+            if tuple_maitre[0] == 6 or tuple_maitre[1] == 6 :
+                print("Le maître du jeu a obtenu un 6. Vous perdez donc l'épreuve et n'obtenez pas la clé.")
+                return False
+        nmb_essais = nmb_essais + 1
+        print("Aucun 6 n'a été obtenu. On passe donc au tour suivant.")
+    print("Aucun joueur n'a obtenu de 6 après trois essais. Il y a donc match nul et vous ne remportez pas la clé.")
+    return False
+
+epreuve_hasard()
