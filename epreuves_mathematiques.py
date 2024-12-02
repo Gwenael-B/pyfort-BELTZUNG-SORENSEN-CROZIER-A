@@ -12,13 +12,17 @@ def epreuve_math():
         epreuve_roulette_mathematique()
 
 #Première épreuve de math : résolution d'équation linéaire.
-#Cette fonction permet de
+#Cette fonction permet de générer aléatoirement deux entiers a et b compris ente 1 et 10 inclus grâce à la fonction
+# random.randint() et de déterminer la valeur de x telle que ax+b = 0, elle renvoie ensuite a, b et x.
 def resoudre_equation_lineaire():
     a = random.randint(1,10)
     b = random.randint(1,10)
     x = (-b)/a
     return a, b, x
 
+#Cette fonction appelle la fonction resoudre_equation_lineaire() pour obtenir a, b et x,
+# elle s'assure ensuite que la saisie de l'utilisateur est correcte puis compare ce résultat à celui
+# trouvé par l'algorithme, si le résultat est le même, la fonction retourne True sinon False.
 def epreuve_math_equation():
     a, b, x = resoudre_equation_lineaire()
     print("Résoudre l'équation ", a, "x +", b, "= 0.\n")
@@ -35,6 +39,8 @@ def epreuve_math_equation():
         print("Incorrect! Vous ne gagnez pas la clé, la réponse était : ", x)
         return False
 
+#Deuxième épreuve de math : détermination du nombre premier (supérieur ou égale) le plus proche d'un entier n.
+#Cette fonction permet de définir si un entier n passé en paramètre est un nombre premier.
 def est_premier(n):
     multiple = 0
     for i in range(2, n):
@@ -45,6 +51,8 @@ def est_premier(n):
     else:
         return True
 
+#Cette fonction appelle la fonction est_premier(n) et permet de retourner le nombre premier supérieur ou égal à n
+# le plus proche.
 def premier_plus_proche(n):
     if est_premier(n):
         return n
@@ -59,6 +67,9 @@ def premier_plus_proche(n):
     else:
         return 11
 
+#Cette fonction permet de générer un entier n compris entre 10 et 20 inclus grâce à la fonction random.randint(),
+# elle s'assure ensuite que la saisie de l'utilisateur est correcte puis compare ce résultat à celui
+# trouvé par l'algorithme, si le résultat est le même, la fonction retourne True sinon False.
 def epreuve_math_premier():
     n = random.randint(10,20)
     reponse_machine = premier_plus_proche(n)
@@ -76,6 +87,12 @@ def epreuve_math_premier():
         print("Incorrect! Vous ne gagnez pas la clé, la réponse était : ", reponse_machine)
         return False
 
+#Troisième épreuve de math : roulette mathematique, calculs entre 5 entiers (addition, soustraction ou multiplication).
+#Cette fonction permet de créer une liste de 5 entiers compris entre 1 et 20 inclus grâce à la fonction random.randint(),
+# elle permet ensuite de choisir aléatoirement entre l'addition, la soustraction ou la multiplication grâce à la
+# fonction random.choice(), elle calcule ensuite les opérations demandées puis elle s'assure que la saisie
+# de l'utilisateur est correcte et compare ce résultat à celui trouvé par l'algorithme,
+# si le résultat est le même, la fonction retourne True sinon False.
 def epreuve_roulette_mathematique():
     Liste_nb_roulette = []
     for i in range(5):
@@ -107,5 +124,6 @@ def epreuve_roulette_mathematique():
         print("Incorrect! Vous ne gagnez pas la clé, la réponse était : ", reponse_machine)
         return False
 
+#Cette boucle permet d'effectuer la fonction epreuve_math() en premier.
 if __name__ == '__main__':
     epreuve_math()
