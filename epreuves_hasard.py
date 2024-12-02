@@ -61,4 +61,5 @@ def jeu_lance_des() :
     print("Aucun joueur n'a obtenu de 6 après trois essais. Il y a donc match nul et vous ne remportez pas la clé.")
     return False
 
-epreuve_hasard()
+if __name__ == '__main__':
+    epreuve_hasard()
