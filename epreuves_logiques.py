@@ -64,7 +64,9 @@ def coup_maitre(grille,symbole):
                 a = 2-i,i
                 return a
     if symbole == 'O':
-        symbole == 'X'
+        symbole = 'X'
+    else:
+        symbole = 'O'
     for i in range(3):
         if (grille[i][0] == symbole and grille[i][1] == symbole and grille[i][2] == ' ') or (grille[i][1] == symbole and grille[i][2] == symbole and grille[i][0] == ' ') or (grille[i][0] == symbole and grille[i][2] == symbole and grille[i][1] == ' '):
             a = i,grille[i].index(' ')
@@ -98,11 +100,51 @@ def tour_maitre(grille, symbole):
     grille[coup[0]][coup[1]] = symbole
     afficher_grille(grille)
 
-def tour_joueur(grille,symbole):
-    coup = int(input("Pour jouer, entrez les coordonnées de votre coup sous forme : ligne, colonne : "))
+def tour_joueur(grille, symbole):
+    coup = int(input("Pour jouer, entrez les coordonnées de votre coup sous forme : ligne puis colonne : ")), int(input(""))
+    while grille[coup[0]][coup[1]] != " ":
+        coup = int(input("Erreur, veuillez sélectionnez un coup possible : ")), int(input(""))
+    grille[coup[0]][coup[1]] = symbole
+    afficher_grille(grille)
 
+def verifier_resultat(grille, symbole_joueur, symbole_maitre):
+    if verifier_victoire(grille, symbole_joueur) or grille_complete(grille) or verifier_victoire(grille, symbole_maitre) :
+        return True
+    else:
+        return False
 
+def jeu_tictactoe():
+    grille = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+    print("Bienvenue au jeu du morpion. Le jeu va maintenant débuter.")
+    symbole_joueur = input("Choisissez votre symbole entre O et X : ")
+    while (symbole_joueur != 'O') and (symbole_joueur != 'X'):
+        symbole_joueur = input("Erreur, veuillez choisir un symbole correct : ")
+    if symbole_joueur == 'X':
+        print("Très bien le symbole du maître de jeu sera donc O.")
+        symbole_maitre = 'O'
+    else:
+        print("Très bien le symbole du maître de jeu sera donc X.")
+        symbole_maitre = 'X'
+    while not(verifier_resultat(grille, symbole_joueur, symbole_maitre)):
+        tour_joueur(grille,symbole_joueur)
+        if verifier_resultat(grille, symbole_joueur, symbole_maitre):
+            if grille_complete(grille):
+                print("Egalité ! Vous ne gagnez pas la clé")
+                return False
+            if verifier_victoire(grille,symbole_joueur):
+                print("Bravo vous gagnez le morpion et vous remportez la clé !")
+                return True
+            else:
+                print("Dommage vous avez perdu, vous ne gagnez pas la clé.")
+                return False
+        print("Voici le coup du maître du jeu : ")
+        tour_maitre(grille,symbole_maitre)
+        if verifier_resultat(grille, symbole_joueur, symbole_maitre):
+            if verifier_victoire(grille,symbole_joueur):
+                print("Bravo vous gagnez le morpion et vous remportez la clé !")
+                return True
+            else:
+                print("Dommage vous avez perdu, vous ne gagnez pas la clé.")
+                return False
 
-
-grille = [[' ','X',' '],[' ','X',' '],[' ',' ',' ']]
-tour_joueur(grille,'X')
+jeu_tictactoe()
