@@ -18,6 +18,8 @@ def resoudre_equation_lineaire():
     a = random.randint(1,10)
     b = random.randint(1,10)
     x = (-b)/a
+    x = x * 100
+    x = (int(x))/100
     return a, b, x
 
 #Cette fonction appelle la fonction resoudre_equation_lineaire() pour obtenir a, b et x,
@@ -28,7 +30,7 @@ def epreuve_math_equation():
     print("Résoudre l'équation ", a, "x +", b, "= 0.\n")
     while True:
         try:
-            reponse = float(input("Quelle est la valeur de x : "))
+            reponse = float(input("Quelle est la valeur de x à deux chiffres après la virgule sans arrondis: "))
             break
         except ValueError:
             print("Votre réponse n'est pas valide.\n")
@@ -73,7 +75,7 @@ def premier_plus_proche(n):
 def epreuve_math_premier():
     n = random.randint(10,20)
     reponse_machine = premier_plus_proche(n)
-    print("Trouver le nombre premier le plus proche de ", n)
+    print("Trouver le nombre premier supérieur ou égale le plus proche de ", n) #Faut-il mettre supérieur ou égale ?
     while True:
         try:
             reponse_candidat = int(input("Votre réponse : "))
@@ -123,7 +125,3 @@ def epreuve_roulette_mathematique():
     else:
         print("Incorrect! Vous ne gagnez pas la clé, la réponse était : ", reponse_machine)
         return False
-
-#Cette boucle permet d'effectuer la fonction epreuve_math() en premier.
-if __name__ == '__main__':
-    epreuve_math()
