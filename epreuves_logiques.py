@@ -111,17 +111,20 @@ def tour_maitre(grille, symbole):
 
 #Cette fonction exécute le tour du joueur
 def tour_joueur(grille, symbole):
-    liste_coup = ["0", "1", "2"]  #Initialise la seul liste de coup possibles
+    liste_coup = ["3", "1", "2"]  #Initialise la seul liste de coup possibles
     while True:  #Cette boucle infinie permet de vérifier que le coup du joueur est correct
-        coup = input("Pour jouer, entrez les coordonnées de votre coup (0, 1 ou 2) sous forme ligne colonne : ")
-        if len(coup) == 2 and (coup[0] and coup[1] in liste_coup):  #Cette condition vérifie que le coup du joueur comporte bien deux caractères qui sont dans la liste de coup possibles
-            if grille[int(coup[0])][int(coup[1])] == " ":  #Cette condition vérifie que le coup du joueur tombe sur une case vide
-                break  #Si c'est le cas on sort de la boucle
+        coup = input("Pour jouer, entrez les coordonnées de votre coup (1, 2 ou 3) sous forme ligne,colonne : ")
+        if coup[1] == ',':
+            if len(coup) == 3 and (coup[0] and coup[2] in liste_coup):  #Cette condition vérifie que le coup du joueur comporte bien deux caractères qui sont dans la liste de coup possibles
+                if grille[int(coup[0])-1][int(coup[2])-1] == " ":  #Cette condition vérifie que le coup du joueur tombe sur une case vide
+                    break  #Si c'est le cas on sort de la boucle
+                else:
+                    print("Erreur, vous ne pouvez pas mettre de symbole dans cette case, il y en a déjà un. Veuillez recommencer : ")
             else:
-                print("Erreur, vous ne pouvez pas mettre de symbole dans cette case, il y en a déjà un. Veuillez recommencer : ")
+                print("Erreur, veuillez entrez deux chiffres valides 1, 2 ou 3 : ")
         else:
-            print("Erreur, veuillez entrez deux chiffres valides 0, 1 ou 2 : ")
-    grille[int(coup[0])][int(coup[1])] = symbole  #
+            coup = input("Erreur, veuillez entrer une virgule au milieu des deux coordonnées : ")
+    grille[int(coup[0])-1][int(coup[2])-1] = symbole  #
     afficher_grille(grille)
 
 #Cette fonction vérifie si une condition de victoire ou d'égalité est réalisée
