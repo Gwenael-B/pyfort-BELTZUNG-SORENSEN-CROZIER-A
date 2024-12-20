@@ -43,5 +43,3 @@ def enigme_pere_fouras():
                 print("Votre réponse est incorrecte, il vous reste", tentatives_restantes, "tentative.")
     print("Dommage, vous avez perdu, la réponse était :", reponse_final_machine)
     return False
-
-enigme_pere_fouras()
