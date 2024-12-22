@@ -38,6 +38,7 @@ def salle_De_Tresor():
             reponse_final_joueur = ""
             reponse_joueur = input("Saisissez votre réponse : ")
             for i in range(len(reponse_joueur)):
+                #Transformation de la réponse du joueur tout en majuscule dans la variable reponse_final_joueur.
                 if 97 <= ord(reponse_joueur[i]) <= 123:
                     reponse_final_joueur = reponse_final_joueur + chr(ord(reponse_joueur[i]) - 32)
                 else:
