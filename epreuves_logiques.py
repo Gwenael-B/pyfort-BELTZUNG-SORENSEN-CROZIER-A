@@ -116,7 +116,7 @@ def tour_joueur(grille, symbole):
         coup = input("Pour jouer, entrez les coordonnées de votre coup (1, 2 ou 3) sous forme ligne,colonne : ")
         if len(coup) == 3 and (coup[0] in liste_coup and coup[2] in liste_coup) and coup[1] == ',':  #Cette condition vérifie que le coup du joueur comporte bien deux caractères qui sont dans la liste de coup possibles
             if grille[int(coup[0])-1][int(coup[2])-1] == " ":  #Cette condition vérifie que le coup du joueur tombe sur une case vide
-                break  #Si c'est le cas on sort de la boucle
+                break  #Si c'est le cas, nous sortons de la boucle
             else:
                 print("Erreur, vous ne pouvez pas mettre de symbole dans cette case, il y en a déjà un. Veuillez recommencer : ")
         else:
