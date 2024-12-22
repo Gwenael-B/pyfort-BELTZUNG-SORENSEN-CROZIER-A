@@ -12,11 +12,13 @@ def salle_De_Tresor():
         for clef in jeu_tv["Fort Boyard"].keys():
             total_annee.append(clef)
         annee = random.choice(total_annee)
-        #Choix de l'émission puis chargement des indices et du mot code (de l'émission choisie) dans la variable indices et celle mot_code.
-        emission = "Émission 00"
-        while emission == "Émission 00":
-            num_emission = random.choice(annee)
-            emission = str("Émission 0" + num_emission)
+        #Création d'un tableau qui va stocker toutes les émissions (avec leur numéro) de l'année choisie précédemment
+        # et ajout de ces dernières avec la fonction for puis choix aléatoire de l'émission avec la fonction random.choice.
+        emission_annee = []
+        for num_emission in jeu_tv["Fort Boyard"][annee].keys():
+            emission_annee.append(num_emission)
+        emission = random.choice(emission_annee)
+        #Chargement des indices et du mot code (de l'émission choisie) dans la variable indices et celle mot_code.
         indices = jeu_tv["Fort Boyard"][annee][emission]["Indices"]
         mot_code = jeu_tv["Fort Boyard"][annee][emission]["MOT-CODE"]
         #Initialisation du nombre d'indices à 3 puis affiches les 3 premiers.
@@ -26,21 +28,27 @@ def salle_De_Tresor():
         nb_essais_restants = 3
         reponse_correcte = False
         #Format de la réponse demandé.
-        print("Veuillez saisir votre réponse en majuscule, sans accents et sans déterminant.")
+        print("Veuillez saisir votre réponse sans accents et sans déterminant.")
         #Cette boucle saisie la réponse de l'utilisateur puis si ce dernier à raison : reponse_correct égale True et on sort de la boucle.
         # Si l'utilisateur à faux, le nombre d'éssais réstants est décrémenté de 1, si ce dernier n'est pas inférieur ou égale à 0 :
         # affichage du nombre d'éssais réstants puis, affichage des indices avec un de plus que précédemment.
         # Si le nombre d'éssais est égale ou inférieur à 0 : affichage du mot code et sort de la fonction car
         # la condition du while n'est pas vérifiée.
         while nb_essais_restants > 0:
+            reponse_final_joueur = ""
             reponse_joueur = input("Saisissez votre réponse : ")
-            if reponse_joueur == mot_code:
+            for i in range(len(reponse_joueur)):
+                if 97 <= ord(reponse_joueur[i]) <= 123:
+                    reponse_final_joueur = reponse_final_joueur + chr(ord(reponse_joueur[i]) - 32)
+                else:
+                    reponse_final_joueur = reponse_final_joueur + reponse_joueur[i]
+            if reponse_final_joueur == mot_code:
                 reponse_correcte = True
                 break
             else:
                 nb_essais_restants = nb_essais_restants-1
                 if nb_essais_restants >0:
-                    print("Il vous reste ", nb_essais_restants, "réstants.")
+                    print("Il vous reste ", nb_essais_restants, "essais réstants.")
                     nb_indices = nb_indices + 1
                     print(indices[:nb_indices])
                 else:
