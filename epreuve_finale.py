@@ -3,7 +3,7 @@ import random
 
 #Cette fonction permet d'efféctuer l'épreuve finale.
 def salle_De_Tresor():
-    print("Bienvenu à l'épreuve finale, vous allez devoir trouver le mot en lien avec les indices pour accéder au trésors !")
+    print("Bienvenue à l'épreuve finale, vous allez devoir trouver le mot en lien avec les indices pour accéder au trésor !")
     #Ouverture du fichier indiceSalle.json puis téléchargement de ce dernier dans la variable jeu_tv.
     with open("./data" + "/indicesSalle.json", "r", encoding='utf8') as indicesSalle:
         jeu_tv = json.load(indicesSalle)
@@ -28,7 +28,7 @@ def salle_De_Tresor():
         nb_essais_restants = 3
         reponse_correcte = False
         #Format de la réponse demandé.
-        print("Veuillez saisir votre réponse sans accents et sans déterminant.")
+        print("Veuillez saisir votre réponse sans déterminant.")
         #Cette boucle saisie la réponse de l'utilisateur puis si ce dernier à raison : reponse_correct égale True et on sort de la boucle.
         # Si l'utilisateur à faux, le nombre d'éssais réstants est décrémenté de 1, si ce dernier n'est pas inférieur ou égale à 0 :
         # affichage du nombre d'éssais réstants puis, affichage des indices avec un de plus que précédemment.
@@ -39,7 +39,7 @@ def salle_De_Tresor():
             reponse_joueur = input("Saisissez votre réponse : ")
             for i in range(len(reponse_joueur)):
                 #Transformation de la réponse du joueur tout en majuscule dans la variable reponse_final_joueur.
-                if 97 <= ord(reponse_joueur[i]) <= 123:
+                if 97 <= ord(reponse_joueur[i]) <= 123 or 224 <= ord(reponse_joueur[i]) <= 255:
                     reponse_final_joueur = reponse_final_joueur + chr(ord(reponse_joueur[i]) - 32)
                 else:
                     reponse_final_joueur = reponse_final_joueur + reponse_joueur[i]
@@ -53,7 +53,7 @@ def salle_De_Tresor():
                     nb_indices = nb_indices + 1
                     print(indices[:nb_indices])
                 else:
-                    print("Le mot était : ", mot_code, ".")
+                    print("Le mot était : ", mot_code)
         #Si la réponse_correcte vaut True (booléen), affichage d'un message de victoire et la fonction retourne True,
         # si la réponse_correcte vaut False (booléen), affichage d'un message de défaite et la fonction retourne False.
         if reponse_correcte:

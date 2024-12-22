@@ -17,6 +17,7 @@ def enigme_pere_fouras():
     enigme = random.choice(liste_enigmes)
     reponse_machine = enigme["reponse"]
     reponse_final_machine = ""
+    #Conversion de la réponse de la machine en minuscule.
     for i in range(len(reponse_machine)):
         if 65 <= ord(reponse_machine[i]) <= 91:
             reponse_final_machine = reponse_final_machine + chr(ord(reponse_machine[i]) + 32)
@@ -27,6 +28,7 @@ def enigme_pere_fouras():
     while tentatives_restantes > 0:
         reponse_final_candidat = ""
         reponse_candidat = input("Saisissez votre réponse avec le determinant : ")
+        # Conversion de la réponse du candidat en minuscule.
         for i in range(len(reponse_candidat)):
             if 65 <= ord(reponse_candidat[i]) <= 91:
                 reponse_final_candidat = reponse_final_candidat + chr(ord(reponse_candidat[i])+32)
@@ -36,10 +38,10 @@ def enigme_pere_fouras():
             print("Bravo, vous gagner la clé.")
             return True
         else:
-            tentatives_restantes = tentatives_restantes - 1
+            tentatives_restantes -= 1
             if tentatives_restantes != 1:
                 print("Votre réponse est incorrecte, il vous reste", tentatives_restantes, "tentatives.")
             else:
                 print("Votre réponse est incorrecte, il vous reste", tentatives_restantes, "tentative.")
-    print("Dommage, vous avez perdu, la réponse était :", reponse_final_machine)
+    print("Dommage, vous avez perdu, la réponse était : ", reponse_machine)
     return False
