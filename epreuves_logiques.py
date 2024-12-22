@@ -7,7 +7,7 @@ def afficher_grille(grille):
         if i !=2:  #Cette condition empêche l'affichage de la ligne de tirets à la fin du quadrillage
             print('----------',"\n",end="")
 
-#Cette fonction vérifie si toutes les cases sont remplies par des symboles, c'est-à-dire si elles sont toutes différentes des espaces
+#Cette fonction vérifie si toutes les cases sont remplies par des symboles, c'est-à-dire si elles sont toutes différentes du symbole espace
 def grille_complete(grille):
     for i in range(3):
         for j in range(3):
@@ -45,7 +45,7 @@ def verifier_victoire(grille, symbole):
         return True
     return False
 
-#Cette fonction choisit le coup du maitre du jeu d'abord pour gagner, puis pour contrer le joueur, puis un coup au hasard si aucun des coups auparavant n'est possible
+#Cette fonction choisit le coup du maître du jeu d'abord pour gagner, puis pour contrer le joueur, puis un coup au hasard si aucun des coups auparavant n'est possible
 def coup_maitre(grille,symbole):
     for i in range(3):  #Cette boucle vérifie si deux symboles identiques sont sur une même ligne et que la troisième case est vide : dans ce cas là il renvoie les coordonnées de la case vide pour le coup gagnant
         if (grille[i][0] == symbole and grille[i][1] == symbole and grille[i][2] == ' ') or (grille[i][1] == symbole and grille[i][2] == symbole and grille[i][0] == ' ') or (grille[i][0] == symbole and grille[i][2] == symbole and grille[i][1] == ' '):
@@ -114,16 +114,13 @@ def tour_joueur(grille, symbole):
     liste_coup = ["3", "1", "2"]  #Initialise la seul liste de coup possibles
     while True:  #Cette boucle infinie permet de vérifier que le coup du joueur est correct
         coup = input("Pour jouer, entrez les coordonnées de votre coup (1, 2 ou 3) sous forme ligne,colonne : ")
-        if coup[1] == ',':
-            if len(coup) == 3 and (coup[0] and coup[2] in liste_coup):  #Cette condition vérifie que le coup du joueur comporte bien deux caractères qui sont dans la liste de coup possibles
-                if grille[int(coup[0])-1][int(coup[2])-1] == " ":  #Cette condition vérifie que le coup du joueur tombe sur une case vide
-                    break  #Si c'est le cas on sort de la boucle
-                else:
-                    print("Erreur, vous ne pouvez pas mettre de symbole dans cette case, il y en a déjà un. Veuillez recommencer : ")
+        if len(coup) == 3 and (coup[0] in liste_coup and coup[2] in liste_coup) and coup[1] == ',':  #Cette condition vérifie que le coup du joueur comporte bien deux caractères qui sont dans la liste de coup possibles
+            if grille[int(coup[0])-1][int(coup[2])-1] == " ":  #Cette condition vérifie que le coup du joueur tombe sur une case vide
+                break  #Si c'est le cas on sort de la boucle
             else:
-                print("Erreur, veuillez entrez deux chiffres valides 1, 2 ou 3 : ")
+                print("Erreur, vous ne pouvez pas mettre de symbole dans cette case, il y en a déjà un. Veuillez recommencer : ")
         else:
-            coup = input("Erreur, veuillez entrer une virgule au milieu des deux coordonnées : ")
+            print("Erreur, veuillez entrez deux chiffres valides 1, 2 ou 3 séparés par une virgule : ")
     grille[int(coup[0])-1][int(coup[2])-1] = symbole  #
     afficher_grille(grille)
 
@@ -163,8 +160,5 @@ def jeu_tictactoe():
         tour_maitre(grille,symbole_maitre)
         if verifier_resultat(grille, symbole_joueur, symbole_maitre):  #Cette condition à la sortie de la boucle permet de trouver le gagnant du morpion
             if verifier_victoire(grille,symbole_joueur):
-                print("Bravo vous gagnez le morpion et vous remportez la clé !")
-                return True
-            else:
                 print("Dommage vous avez perdu, vous ne gagnez pas la clé.")
                 return False
