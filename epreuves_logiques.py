@@ -168,5 +168,3 @@ def jeu_tictactoe():
             else:
                 print("Dommage vous avez perdu, vous ne gagnez pas la clé.")
                 return False
-
-jeu_tictactoe()
