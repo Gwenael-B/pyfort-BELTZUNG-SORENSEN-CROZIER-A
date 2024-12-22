@@ -159,6 +159,6 @@ def jeu_tictactoe():
         print("Voici le coup du maître du jeu : ")
         tour_maitre(grille,symbole_maitre)
         if verifier_resultat(grille, symbole_joueur, symbole_maitre):  #Cette condition à la sortie de la boucle permet de trouver le gagnant du morpion
-            if verifier_victoire(grille,symbole_joueur):
+            if verifier_victoire(grille,symbole_maitre):
                 print("Dommage vous avez perdu, vous ne gagnez pas la clé.")
                 return False
