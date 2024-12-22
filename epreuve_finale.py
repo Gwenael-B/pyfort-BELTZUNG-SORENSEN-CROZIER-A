@@ -18,7 +18,7 @@ def salle_De_Tresor():
         for num_emission in jeu_tv["Fort Boyard"][annee].keys():
             emission_annee.append(num_emission)
         emission = random.choice(emission_annee)
-        #Chargement des indices et du mot code (de l'émission choisie) dans la variable indices et celle mot_code.
+        #Chargement des indices et du mot code (de l'émission choisie) dans la variable indices et dans celle mot_code.
         indices = jeu_tv["Fort Boyard"][annee][emission]["Indices"]
         mot_code = jeu_tv["Fort Boyard"][annee][emission]["MOT-CODE"]
         #Initialisation du nombre d'indices à 3 puis affiches les 3 premiers.
