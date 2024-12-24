@@ -30,7 +30,7 @@ def jeu():
             else:
                 print("Vous avez maintenant", clef, "clés\n")
         compteur_epreuve -= 1
-    if clef == 3:
+    if clef >= 3:
         if salle_De_Tresor():
             print("Encore bravo, vous gagnez le jeu.")
             return None
