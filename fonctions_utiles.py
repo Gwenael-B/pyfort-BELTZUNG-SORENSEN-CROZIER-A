@@ -2,13 +2,16 @@ def introduction():
     print("Bonjour et bienvenue dans FORT BOYARD SIMULATOR.\nVous allez faire face à 4 défis. Pour chaque défi remporté, vous gagnerez une clé.\nIl vous faut obtenir au minimum 3 clés pour espérer accéder à la salle du trésor.")
     print("Vous aurez une épreuve de mathématiques, une épreuve de hasard, une épreuve de logique et enfin l'énigme de père Fouras.\n")
 
-def menu_epreuves():
-    print("Choisissez une épreuve parmi les quatre suivantes : \n")
-    print("1. Epreuve de Mathématiques\n2. Epreuve de Logique\n3. Epreuve du hasard\n4. Enigme du Père Fourras")
+def menu_epreuves(liste_epreuve):
+    L = liste_epreuve
+    print("Choisissez une épreuve parmi les épreuves suivantes : \n")
+    for i in range(len(L)):
+        print(i+1, ".", L[i])
     choix = input("Choix : ")
-    while choix not in ["1","2","3","4"]:  #Vérifie que le choix saisi correspond à une épreuve
+    while (0 >= int(choix)) or (int(choix) >= len(L)+1):  #Vérifie que le choix saisi correspond à une épreuve
         choix = input("Choix invalide. Veuillez réessayez : ")
-    return choix
+    del L[int(choix)-1]
+    return choix, L
 
 def composer_equipe():
     nb_joueurs = input("Combien de joueurs souhaitez-vous inscrire dans l'équipe (nombre maximum de trois joueurs) : ")

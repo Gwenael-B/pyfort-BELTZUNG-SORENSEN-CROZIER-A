@@ -1,4 +1,4 @@
-from fonctions_utiles import introduction, composer_equipe, choisir_joueur, menu_epreuves
+from fonctions_utiles import introduction, composer_equipe, choisir_joueur, menu_epreuves, enregistrer_historique
 from  epreuves_mathematiques import epreuve_math
 from epreuves_logiques import jeu_tictactoe
 from epreuves_hasard import  epreuve_hasard
@@ -10,8 +10,9 @@ def jeu():
     equipe = composer_equipe()
     clef = 0
     compteur_epreuve = 4
+    liste_epreuve = ["Epreuve de Mathématiques", "Epreuve de Logique", "Epreuve du hasard", "Enigme du Père Fourras"]
     while clef != 3 and compteur_epreuve > 0:
-        num_epreuve = menu_epreuves()
+        num_epreuve, liste_epreuve = menu_epreuves(liste_epreuve)
         choisir_joueur(equipe)
         resultat = False
         match num_epreuve:
