@@ -4,9 +4,9 @@ import random
 def epreuve_hasard():
     nom_epreuve=random.choice(["bonneteau", "jeu_lance_des"])
     if nom_epreuve == "bonneteau":
-        bonneteau()
+        return bonneteau()
     else:
-        jeu_lance_des()
+        return jeu_lance_des()
 
 #Première épreuve de hasard : le jeu du bonneteau
 def bonneteau():

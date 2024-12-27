@@ -5,11 +5,11 @@ def epreuve_math():
     epreuves = ["equation_lineaire", "nombre_premier", "roulette_mathematique"]
     epreuve = random.choice(epreuves)
     if epreuve == "equation_lineaire":
-        epreuve_math_equation()
+        return epreuve_math_equation()
     elif epreuve == "nombre_premier":
-        epreuve_math_premier()
+        return epreuve_math_premier()
     else:
-        epreuve_roulette_mathematique()
+        return epreuve_roulette_mathematique()
 
 #Première épreuve de math : résolution d'équation linéaire.
 #Cette fonction permet de générer aléatoirement deux entiers a et b compris ente 1 et 10 inclus grâce à la fonction
