@@ -159,9 +159,13 @@ def jeu_pendu():
                 return True
             #Affiche la ou les lettres déjà utilisées par le joueur.
             if len(lettres_utilisees) != 1:
-                print("Voici les lettres que vous avez déjà choisies : ", lettres_utilisees[:])
+                print("Voici les lettres que vous avez déjà choisies : ", end="")
+                for i in range(len(lettres_utilisees)):
+                    print(lettres_utilisees[i], end=", ")
             else:
-                print("Voici la lettre que vous avez déjà choisie : ", lettres_utilisees[:])
+                print("Voici la lettre que vous avez déjà choisie : ", end="")
+                for i in range(len(lettres_utilisees)):
+                    print(lettres_utilisees[i], end="")
         else:
             #Vérification si réponse juste affichage du message correspondant.
             if mot_simplifie(saisie_mot_joueur()) == mot_simplifie(mot):
