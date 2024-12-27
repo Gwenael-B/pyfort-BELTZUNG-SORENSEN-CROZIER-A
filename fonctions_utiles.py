@@ -4,17 +4,16 @@ def introduction():
 
 def menu_epreuves(liste_epreuve):
     L = liste_epreuve
-    C = []
+    C = []  #Initialise une liste qui contiendra les choix possibles
     print("Choisissez une épreuve parmi les épreuves suivantes : \n")
     for i in range(len(L)):
         print(i+1, ".", L[i])
-    for i in range(len(L)):
+    for i in range(len(L)):  #Remplis le tableau des choix possibles avec des caractères
         C.append(str(i+1))
-    print(C)
     choix = input("Choix : ")
     while choix not in C:
         choix = input("Erreur veuillez entrer un nombre correct : ")
-    del L[int(choix)-1]
+    del L[int(choix)-1]  #Supprime l'épreuve qui a été choisi
     return choix, L
 
 def composer_equipe():
