@@ -4,12 +4,16 @@ def introduction():
 
 def menu_epreuves(liste_epreuve):
     L = liste_epreuve
+    C = []
     print("Choisissez une épreuve parmi les épreuves suivantes : \n")
     for i in range(len(L)):
         print(i+1, ".", L[i])
+    for i in range(len(L)):
+        C.append(str(i+1))
+    print(C)
     choix = input("Choix : ")
-    while (0 >= int(choix)) or (int(choix) >= len(L)+1):  #Vérifie que le choix saisi correspond à une épreuve
-        choix = input("Choix invalide. Veuillez réessayez : ")
+    while choix not in C:
+        choix = input("Erreur veuillez entrer un nombre correct : ")
     del L[int(choix)-1]
     return choix, L
 
