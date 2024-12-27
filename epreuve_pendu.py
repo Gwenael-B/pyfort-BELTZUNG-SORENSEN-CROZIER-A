@@ -177,4 +177,3 @@ def jeu_pendu():
     else:
         print("\nDésolé, vous n'avez pas trouvez le mot qui était : ", mot_choisi)
         return False
-jeu_pendu()
