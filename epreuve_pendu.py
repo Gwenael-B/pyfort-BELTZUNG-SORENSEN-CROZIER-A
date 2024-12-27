@@ -3,7 +3,7 @@ import json
 
 #Fonction qui charge la liste de mots.
 def chargement_enigmes():
-    with open("liste_mot.json", "r", encoding='utf8') as fichier_mots:
+    with open("liste_mot_pendu.json", "r", encoding='utf8') as fichier_mots:
         liste_mots = json.load(fichier_mots)
         return liste_mots
 
