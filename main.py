@@ -2,6 +2,7 @@ from fonctions_utiles import introduction, composer_equipe, choisir_joueur, menu
 from  epreuves_mathematiques import epreuve_math
 from epreuves_logiques import jeu_tictactoe
 from epreuves_hasard import  epreuve_hasard
+from epreuve_pendu import jeu_pendu
 from enigme_pere_fouras import enigme_pere_fouras
 from epreuve_finale import salle_De_Tresor
 
@@ -23,6 +24,8 @@ def jeu():
             case '3':
                 resultat = epreuve_hasard()
             case '4':
+                resultat = jeu_pendu()
+            case '5':
                 resultat = enigme_pere_fouras()
         if resultat:
             clef += 1

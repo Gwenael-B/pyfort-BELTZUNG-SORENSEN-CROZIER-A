@@ -1,4 +1,0 @@
-   Nom     | Cles  | Victoires
--------------------------------
-  opera    |   9   |  45  
- clarence  |   6   |   0  

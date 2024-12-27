@@ -53,7 +53,7 @@ def choisir_joueur(equipe):
     return equipe[int(choix)-1]
 
 def enregistrer_historique(nom, nb_cle, nb_victoire):
-    with open("historique.txt", "r") as f :  #Ouvre le fichier historique en lecture seul
+    with open("data/historique.txt", "r") as f :  #Ouvre le fichier historique en lecture seul
         dico_principal = {}  #Initialise le dictionnaire qui stockera toutes les informations des joueurs
         i = 0
         f.readline()  #Saute les deux premières lignes car elles ne contiennent pas d'informations, elles servent juste à rendre les valeurs plus visibles
@@ -70,7 +70,7 @@ def enregistrer_historique(nom, nb_cle, nb_victoire):
                 break  #On sort de la boucle for pour ne pas parcourir tous les dictionnaires des joueurs une fois qu'on a trouvé le bon
         else:  #Si le nom du joueur mis comme argument dans la fonction n'est pas encore dans le dictionnaire principal, on le rajoute
             dico_principal[len(dico_principal)] = {"nom": nom, "nb_cle": nb_cle, "nb_victoire": nb_victoire}
-    with open("historique.txt", "w") as f:  #On ouvre maintenant le fichier historique en écriture pour modifier les informations des joueurs
+    with open("data/historique.txt", "w") as f:  #On ouvre maintenant le fichier historique en écriture pour modifier les informations des joueurs
         f.write(f"{'Nom':^10} {"|"} {'Cles':^5} {"|"} {'Victoires':^5}\n")  #On réécrit la mise en page comme le fichier est compressé en ouvrture, les :^nombre servent à aligner les mots
         f.write("-------------------------------\n")
         for i in range(len(dico_principal)):  #On parcourt notre dictionnaire principal
