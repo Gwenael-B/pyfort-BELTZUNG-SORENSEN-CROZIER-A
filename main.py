@@ -17,15 +17,15 @@ def jeu():
         joueur_choisi = choisir_joueur(equipe)
         resultat = False
         match num_epreuve:
-            case '1':
+            case 'Epreuve de Mathématiques':
                 resultat = epreuve_math()
-            case '2':
+            case 'Epreuve de Logique':
                 resultat = jeu_tictactoe()
-            case '3':
+            case 'Epreuve du hasard':
                 resultat = epreuve_hasard()
-            case '4':
+            case 'Epreuve du pendu':
                 resultat = jeu_pendu()
-            case '5':
+            case 'Enigme du Père Fourras':
                 resultat = enigme_pere_fouras()
         if resultat:
             enregistrer_historique(joueur_choisi["nom"], 1, 0)

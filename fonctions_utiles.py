@@ -13,8 +13,9 @@ def menu_epreuves(liste_epreuve):
     choix = input("Choix : ")
     while choix not in C:
         choix = input("Erreur veuillez entrer un nombre correct : ")
+    epreuve = L[int(choix)-1]
     del L[int(choix)-1]  #Supprime l'épreuve qui a été choisi
-    return choix, L
+    return epreuve, L
 
 def composer_equipe():
     nb_joueurs = input("Combien de joueurs souhaitez-vous inscrire dans l'équipe (nombre maximum de trois joueurs) : ")
