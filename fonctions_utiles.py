@@ -52,7 +52,7 @@ def choisir_joueur(equipe):
     print("")  #Ecris une ligne vide pour faire un saut de ligne et afficher la liste de joueurs distinctes des autres informations
     choix = input("Entrez le numéro du joueur souhaité : ")
     while choix not in taille:  #Tant que le choix du numéro du joueur n'est pas dans la liste cela signifie que le choix n'est pas valide, on redemande alors un numéro
-        choix = input("Choix incorrect, veuillez réessayez : ")
+        choix = input("Choix incorrect, veuillez réessayer : ")
     return equipe[int(choix)-1]
 
 def enregistrer_historique(nom, nb_cle, nb_victoire):

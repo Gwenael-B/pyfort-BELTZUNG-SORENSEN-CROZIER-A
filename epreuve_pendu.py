@@ -126,7 +126,7 @@ def affichage_pendu(tentatives):
 
 #Fonction principale
 def jeu_pendu():
-    print("Bienvenue au jeu du pendu, vous allez devoir deviner un mot avec que vous soyez pendu (9 tentatives).\nBonne chance !\n")
+    print("Bienvenue au jeu du pendu, vous allez devoir deviner un mot avant que vous ne soyez pendu (9 tentatives).\nBonne chance !\n")
     tentatives = 0
     liste_mots = chargement_enigmes()
     mot_choisi = random.choice(liste_mots)
@@ -155,7 +155,7 @@ def jeu_pendu():
             print(affichage_pendu(tentatives))
             #Vérification si toutes les lettres correspondent à celle du mot et message correspondant.
             if affichage_lettre_trouvees(lettres_utilisees, mot) == mot:
-                print("\nBravo, vous avez gagnez !")
+                print("\nBravo, vous avez gagné !")
                 return True
             #Affiche la ou les lettres déjà utilisées par le joueur.
             if len(lettres_utilisees) != 1:
@@ -169,15 +169,15 @@ def jeu_pendu():
         else:
             #Vérification si réponse juste affichage du message correspondant.
             if mot_simplifie(saisie_mot_joueur()) == mot_simplifie(mot):
-                print("\nBravo, vous avez gagnez !")
+                print("\nBravo, vous avez gagné !")
                 return True
             else:
-                print("\nDésolé, vous n'avez pas trouvez le mot qui était : ", mot_choisi)
+                print("\nDésolé, vous n'avez pas trouver le mot qui était : ", mot_choisi)
                 return False
     #Vérification si réponse juste affichage du message correspondant.
     if mot_simplifie(affichage_lettre_trouvees(lettres_utilisees, mot)) == mot_simplifie(mot):
-        print("\nBravo, vous avez gagnez !")
+        print("\nBravo, vous avez gagné !")
         return True
     else:
-        print("\nDésolé, vous n'avez pas trouvez le mot qui était : ", mot_choisi)
+        print("\nDésolé, vous n'avez pas trouver le mot qui était : ", mot_choisi)
         return False

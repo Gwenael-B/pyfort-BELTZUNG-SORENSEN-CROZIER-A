@@ -14,7 +14,7 @@ def jeu():
     liste_epreuve = ["Epreuve de Mathématiques", "Epreuve de Logique", "Epreuve du hasard", "Epreuve du pendu", "Enigme du Père Fourras"]
     while clef != 3 and compteur_epreuve > 0:
         num_epreuve, liste_epreuve = menu_epreuves(liste_epreuve)
-        choisir_joueur(equipe)
+        joueur_choisi = choisir_joueur(equipe)
         resultat = False
         match num_epreuve:
             case '1':
@@ -28,6 +28,7 @@ def jeu():
             case '5':
                 resultat = enigme_pere_fouras()
         if resultat:
+            enregistrer_historique(joueur_choisi["nom"], 1, 0)
             clef += 1
             if clef == 1:
                 print("Vous avez maintenant", clef, "clé\n")
@@ -37,6 +38,8 @@ def jeu():
     if clef >= 3:
         if salle_De_Tresor():
             print("Encore bravo, vous gagnez le jeu.")
+            for i in range(len(equipe)):
+                enregistrer_historique(equipe[i]["nom"], 0, 1)
             return None
         else:
             print("Désolé, vous perdez malheureusement le jeu.")

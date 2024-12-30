@@ -147,12 +147,12 @@ def jeu_tictactoe():
     while not(verifier_resultat(grille, symbole_joueur, symbole_maitre)):  #Cette boucle tourne tant qu'aucune condition de victoire ou d'égalité n'a été accomplie
         tour_joueur(grille,symbole_joueur)
         if verifier_resultat(grille, symbole_joueur, symbole_maitre):  #Cette condition vérifie si quelqu'un a gagné le jeu ou si il y a eu égalité : dans ce cas-là on rentre dans la boucle pour trouver le gagnant
-            if grille_complete(grille):
-                print("Egalité ! Vous ne gagnez pas la clé")
-                return False
-            if verifier_victoire(grille,symbole_joueur):
+            if verifier_victoire(grille, symbole_joueur):
                 print("Bravo vous gagnez le morpion et vous remportez la clé !")
                 return True
+            elif grille_complete(grille):
+                print("Egalité ! Vous ne gagnez pas la clé")
+                return False
             else:
                 print("Dommage vous avez perdu, vous ne gagnez pas la clé.")
                 return False

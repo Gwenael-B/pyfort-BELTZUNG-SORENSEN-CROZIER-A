@@ -57,7 +57,7 @@ def salle_De_Tresor():
         #Si la réponse_correcte vaut True (booléen), affichage d'un message de victoire et la fonction retourne True,
         # si la réponse_correcte vaut False (booléen), affichage d'un message de défaite et la fonction retourne False.
         if reponse_correcte:
-            print("Bravo vous avez gagner !")
+            print("Bravo vous avez gagné !")
             return True
         else:
             print("Désolé, vous n'avez pas su trouver la réponse, vous perdez !")
