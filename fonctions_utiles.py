@@ -57,7 +57,7 @@ def choisir_joueur(equipe):
     return equipe[int(choix)-1]
 
 def enregistrer_historique(nom, profession, nb_cle, nb_victoire):
-    with open("data/historique.txt", "r") as f :  #Ouvre le fichier historique en lecture seul
+    with open("data/historique.txt", "r", encoding='utf8') as f :  #Ouvre le fichier historique en lecture seul
         dico_principal = {}  #Initialise le dictionnaire qui stockera toutes les informations des joueurs
         i = 0
         f.readline()  #Saute les deux premières lignes car elles ne contiennent pas d'informations, elles servent juste à rendre les valeurs plus visibles
@@ -74,10 +74,9 @@ def enregistrer_historique(nom, profession, nb_cle, nb_victoire):
                 break  #On sort de la boucle for pour ne pas parcourir tous les dictionnaires des joueurs une fois qu'on a trouvé le bon
         else:  #Si le nom du joueur mis comme argument dans la fonction n'est pas encore dans le dictionnaire principal, on le rajoute
             dico_principal[len(dico_principal)] = {"nom": nom, "profession": profession, "nb_cle": nb_cle, "nb_victoire": nb_victoire}
-    with open("data/historique.txt", "w") as f:  #On ouvre maintenant le fichier historique en écriture pour modifier les informations des joueurs
+    with open("data/historique.txt", "w", encoding='utf8') as f:  #On ouvre maintenant le fichier historique en écriture pour modifier les informations des joueurs
         f.write(f"{'Nom':^11} {"|"} {'Profession':^12} {"|"} {'Cles':^6} {"|"} {'Victoires':^5}\n")  #On réécrit la mise en page comme le fichier est compressé en ouvrture, les :^nombre servent à aligner les mots
         f.write("------------------------------------------------\n")
         for i in range(len(dico_principal)):  #On parcourt notre dictionnaire principal
             ligne = f"{dico_principal[i]['nom']:^11} {"|"} {dico_principal[i]['profession']:^12} {"|"} {dico_principal[i]['nb_cle']:^6} {"|"} {dico_principal[i]['nb_victoire']:^7}\n"  #On prépare le texte à écrire dans la ligne comme f.write() ne prend qu'un argument
             f.write(ligne)  #On écrit les informations d'un joueur à chaque ligne
-enregistrer_historique("Clarence", "etudiant", 1,1 )
