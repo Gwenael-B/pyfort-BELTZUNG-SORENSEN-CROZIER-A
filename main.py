@@ -28,7 +28,7 @@ def jeu():
             case 'Enigme du Père Fourras':
                 resultat = enigme_pere_fouras()
         if resultat:
-            enregistrer_historique(joueur_choisi["nom"], 1, 0)
+            enregistrer_historique(joueur_choisi["nom"], joueur_choisi["profession"], 1, 0)
             clef += 1
             if clef == 1:
                 print("Vous avez maintenant", clef, "clé\n")
@@ -39,7 +39,7 @@ def jeu():
         if salle_De_Tresor():
             print("Encore bravo, vous gagnez le jeu.")
             for i in range(len(equipe)):
-                enregistrer_historique(equipe[i]["nom"], 0, 1)
+                enregistrer_historique(equipe[i]["nom"], equipe[i]["profession"], 0, 1)
             return None
         else:
             print("Désolé, vous perdez malheureusement le jeu.")
