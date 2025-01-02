@@ -1,7 +1,15 @@
+#enigme_pere_fouras.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, BELTZUNG-SÖRENSEN Gwenaël. Ce fichier importe les modules
+# random et json puis charge toutes les énigmes du Père Fouras, il en choisit une au hasard.
+# Ensuite il compare le résultat de la machine à celle donnée par le joueur qui a trois essais,
+# si au bout de ces trois essais le joueur n'a pas trouvé la bonne réponse le programme retourne false sinon
+# s'il a trouvé la bonne réponse avant les trois tentatives soient écoulées le programme retourne true.
+
+
 import json
 import random
 
 #Cette fonction permet de charger toutes les données du fichier enigmesPF.json dans la variable 'donnes' et la retourne.
+#Cette fonction prend en paramètre le nom du dossier.
 def charger_enigmes(dossier):
     with open(dossier + "/enigmesPF.json", "r", encoding='utf8') as enigmesPF:
         donnees = json.load(enigmesPF)
