@@ -9,7 +9,8 @@ import json
 import random
 
 #Cette fonction permet de charger toutes les données du fichier enigmesPF.json dans la variable 'donnes' et la retourne.
-#Cette fonction prend en paramètre le nom du dossier.
+# Les données sont chargée dans la norme utf-8 pour qu'il n'y ait pas de problème d'affichage.
+# Cette fonction prend en paramètre le nom du dossier.
 def charger_enigmes(dossier):
     with open(dossier + "/enigmesPF.json", "r", encoding='utf8') as enigmesPF:
         donnees = json.load(enigmesPF)
