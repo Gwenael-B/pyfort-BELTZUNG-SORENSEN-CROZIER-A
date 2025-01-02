@@ -1,7 +1,14 @@
+#fonctions_utiles.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, CROZIER Clarence. Ce fichier comporte des
+# fonctions utiles au bon déroulement du jeu et qui seront ensuite utilisé dans le main
+
+#Cette fonction affiche juste un message d'introduction pour signaler l'arrivée dans le jeu et son déroulement
 def introduction():
     print("Bonjour et bienvenue dans FORT BOYARD SIMULATOR.\nVous allez faire face à 4 défis. Pour chaque défi remporté, vous gagnerez une clé.\nIl vous faut obtenir au minimum 3 clés pour espérer accéder à la salle du trésor.")
     print("Vous aurez une épreuve de mathématiques, une épreuve de hasard, une épreuve de logique et enfin l'énigme de père Fouras.\n")
 
+#Cette fonction permet au joueur de choisir une épreuve. Elle prend en argument la liste des épreuves disponibles pour permettre
+# au joueur de choisir l'épreuve qu'il souhaite puis la supprime dans la liste des épreuves disponibles. La fonction
+# retourne ensuite l'épreuve choisie par le joueur et la nouvelle liste des épreuves disponibles
 def menu_epreuves(liste_epreuve):
     L = liste_epreuve
     C = []  #Initialise une liste qui contiendra les choix possibles
@@ -14,9 +21,10 @@ def menu_epreuves(liste_epreuve):
     while choix not in C:
         choix = input("Erreur veuillez entrer un nombre correct : ")
     epreuve = L[int(choix)-1]
-    del L[int(choix)-1]  #Supprime l'épreuve qui a été choisi
+    del L[int(choix)-1]  #Supprime l'épreuve qui a été choisi de la liste épreuve
     return epreuve, L
 
+#Cette fonction permet de composer les équipes. Elle ne prend pas d'arguments en entrée et retourne la liste des dictionnaires des joueurs
 def composer_equipe():
     nb_joueurs = input("Combien de joueurs souhaitez-vous inscrire dans l'équipe (nombre maximum de trois joueurs) : ")
     while nb_joueurs not in ["1","2","3"]:  #Vérifie que le nombre de joueurs est bien entre 1 et 3
@@ -40,6 +48,8 @@ def composer_equipe():
         print("Comme aucun joueur n'a été désigné leader, c'est le premier joueur soit", equipe[0]["nom"], "qui a été choisi leader.")
     return equipe
 
+#Cette fonction permet de choisir le joueur qui participera à une épreuve. Elle prend la liste des joueurs en arguments et retourne
+# le dictionnaire contenant toutes les informations du joueur choisi
 def choisir_joueur(equipe):
     taille = []  #initialise une liste pour contenir le choix du joueur, la liste va être remplie par les numéros des joueurs et dépend donc du nombre de joueurs
     print("")  #Ecris une ligne vide pour faire un saut de ligne et afficher la liste de joueurs distinctes des autres informations
@@ -56,6 +66,9 @@ def choisir_joueur(equipe):
         choix = input("Choix incorrect, veuillez réessayer : ")
     return equipe[int(choix)-1]
 
+#Cette fonction permet d'enregistrer l'historique. Elle prend en argument le nom, la profession, le nombre de clés et de victoire d'un
+# joueur mais elle ne retourne rien. Elle ouvre le fichier historique.txt d'abord en lecture seule pour récupérer les informations
+# déjà présentes puis elle l'ouvre ensuite en écriture pour réécrire toutes les informations
 def enregistrer_historique(nom, profession, nb_cle, nb_victoire):
     with open("data/historique.txt", "r", encoding='utf8') as f :  #Ouvre le fichier historique en lecture seul
         dico_principal = {}  #Initialise le dictionnaire qui stockera toutes les informations des joueurs

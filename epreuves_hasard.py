@@ -1,6 +1,10 @@
+#epreuves_hasard.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, CROZIER Clarence.
+#Ce fichier importe le module random et contient la fonction qui permet de choisir une des deux épreuves de hasard ainsi que les deux épreuves de hasard
+
 import random
 
-#Cette fonction permet de sélectionner au hasard une des deux épreuves de hasard.
+#Cette fonction permet de sélectionner au hasard une des deux épreuves de hasard. Il exécute alors la fonction
+# correspondant à l'épreuve de hasard choisi
 def epreuve_hasard():
     nom_epreuve=random.choice(["bonneteau", "jeu_lance_des"])
     if nom_epreuve == "bonneteau":
@@ -8,7 +12,8 @@ def epreuve_hasard():
     else:
         return jeu_lance_des()
 
-#Première épreuve de hasard : le jeu du bonneteau
+#Première épreuve de hasard : le jeu du bonneteau. Il ne prend pas de paramètres en entrée et retourne True si
+# le joueur remporte l'épreuve ou False si le joueur l'a perd
 def bonneteau():
     L = ['A','B','C']  #Initialisation de la liste de choix possibles
     print("Bienvenue à l'épreuve des bonneteaux. Voici le but du jeu : devant vous se trouvent trois bonneteaux, la clé se trouve sous l'un d'eux. \nVous aurez deux essais pour tenter de trouver la clé. Au début, la clé est placée aléatoirement sous l'un des trois bonneteaux. Bonne chance !")
@@ -38,7 +43,8 @@ def bonneteau():
                     print("Dommage, vous n'avez pas réussi à avoir la clé. Elle se trouvait sous le bonneteau", position_cle, ". Vous avez perdu l'épreuve car vous n'avez pas réussi à trouver la clé en deux essais.")
                     return False
 
-#Deuxième épreuve de hasard : le lancé de dés
+#Deuxième épreuve de hasard : le lancé de dés. Il ne prend pas de paramètres en entrée et retourne True si
+# le joueur remporte l'épreuve ou False si le joueur l'a perd
 def jeu_lance_des() :
     print("Bienvenue à l'épreuve du lancer de dés. Vous allez jouer contre le maître du jeu. A chaque tour vous devrez lancer deux dés, le premier à obtenir un 6 remporte la partie. \nVous aurez un maximum de trois essais et c'est vous qui commencerez. Bonne chance !")
     nmb_essais = 0
