@@ -1,7 +1,18 @@
+#epreuves_finale.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, BELTZUNG-SÖRENSEN Gwenaël. Ce fichier importe les modules random et json.
+# Il permet d’effectuer l'épreuve finale
+
+
 import json
 import random
 
+
 #Cette fonction permet d'efféctuer l'épreuve finale.
+#La fonction charge d’abord le fichier indicesSalle.json dans la norme utf-8 pour que l’affichage soit correct.
+# Il y a ensuite Choix de manière aléatoire des indices et de la réponse suivi de la comparaison entre
+# la réponse du candidat et celle de la machine si la réponse est la même le candidat gagne sinon
+# le nombre d'essais et décrémenté de un et un indice de plus est révélé, si au bout de trois essais
+# le candidat n'a pas trouvé la bonne réponse, il perd le jeu et la fonction retourne false
+# si le joueur a trouvé la bonne réponse la fonction retourne true.
 def salle_De_Tresor():
     print("Bienvenue à l'épreuve finale, vous allez devoir trouver le mot en lien avec les indices pour accéder au trésor !")
     #Ouverture du fichier indiceSalle.json puis téléchargement de ce dernier dans la variable jeu_tv.
