@@ -1,13 +1,22 @@
+#epreuves_pendu.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, BELTZUNG-SÖRENSEN Gwenaël. Ce fichier importe les modules random et json.
+# Il permet d’effectuer l'épreuve de pendu. Le programme saisie d'abord un mot de manière aléatoire dans le fichier
+# liste_mot_pendu.json puis demande au joueur s’il veut saisir une lettre ou un mot. Le programme vérifie ensuite
+# si la lettre choisie est dans le mot qui a été défini après l'avoir transformé en minuscule sans accent,
+# si le joueur a choisi de saisir un mot le programme le compare également en minuscule et sans accent
+# au mot choisis de manière aléatoire en minuscule et sans accent. Enfin, si la réponse est correcte,
+# le programme renvoie true sinon il renvoie false.
+
+
 import random
 import json
 
-#Fonction qui charge la liste de mots.
+#Fonction qui charge la liste de mots et la retourne.
 def chargement_enigmes():
     with open("data/liste_mot_pendu.json", "r", encoding='utf8') as fichier_mots:
         liste_mots = json.load(fichier_mots)
         return liste_mots
 
-#Transforme les lettres sans accent en minuscule.
+#Transforme la lettre prise en paramètre et le retourne sans accent et en minuscule.
 def remplace_lettre(lettre):
     #Lettre a.
     if 224 <= ord(lettre) <= 229:
@@ -28,14 +37,14 @@ def remplace_lettre(lettre):
     else:
         return lettre
 
-#Transforme le mot sans accent en minuscule.
+#Transforme le mot pris en paramètre et leretourne sans accent et en minuscule.
 def mot_simplifie(mot):
     mot_simple = ""
     for i in range(len(mot)):
         mot_simple = mot_simple + remplace_lettre(mot[i])
     return mot_simple
 
-#Fonction qui vérifie que le choix du joueur est correct.
+#Fonction qui vérifie que le choix du joueur est correct et retourne le choix du joueur.
 def saisie_choix_joueur():
     choix_joueur = 0
     while True:
@@ -46,7 +55,7 @@ def saisie_choix_joueur():
         except ValueError:
             print("Votre réponse n'est pas valide.")
 
-#Fonction qui vérifie que la lettre saisie par le joueur est correcte et conversion en minuscule.
+#Fonction qui vérifie que la lettre saisie par le joueur est correcte et la convertie en minuscule puis la renvoie.
 def saisie_lettre_joueur():
     while True:
         try:
@@ -60,7 +69,7 @@ def saisie_lettre_joueur():
         except ValueError:
             print("Votre réponse n'est pas valide.")
 
-#Fonction qui saisie et converti le mot final du joueur en minuscule.
+#Fonction qui saisie et converti le mot final du joueur en minuscule et le retourne.
 def saisie_mot_joueur():
     mot_joueur = input("Saisissez votre mot. ")
     mot_final_joueur = ""
@@ -72,7 +81,7 @@ def saisie_mot_joueur():
             mot_final_joueur = mot_final_joueur + mot_joueur[i]
     return mot_final_joueur
 
-#Cette fonction affiche les lettres utilisées et leur position dans le mot.
+#Cette fonction retourne une chaine de charactère où sont présentes les lettres utilisées et leur position dans le mot.
 def affichage_lettre_trouvees(lettres_utilisees, mot):
     lettre = {}
     affichage = ""
@@ -85,7 +94,8 @@ def affichage_lettre_trouvees(lettres_utilisees, mot):
         affichage += valeur
     return affichage
 
-#Cette fonction permet d'afficher le pendu en fonction du nombre de tentatives.
+#Cette fonction permet d'afficher le pendu en fonction du nombre de tentatives déja effectuées, saisie en paramètre,
+# elle retourne un espace pour plus de lisibilité.
 def affichage_pendu(tentatives):
     mat_verticale = " |  "
     ligne1 = " ______\n"
@@ -124,7 +134,7 @@ def affichage_pendu(tentatives):
         print(ligne1, ligne2, ligne3, ligne4, ligne5)
         return " "
 
-#Fonction principale
+#Fonction principale qui permet de coordonner le jeu et qui retourne à la fin false si le mot n'a pas été trouvé et true s'il a été trouvé.
 def jeu_pendu():
     print("Bienvenue au jeu du pendu, vous allez devoir deviner un mot avant que vous ne soyez pendu (9 tentatives).\nBonne chance !\n")
     tentatives = 0
