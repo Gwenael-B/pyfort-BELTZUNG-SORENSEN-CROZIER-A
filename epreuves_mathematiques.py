@@ -1,6 +1,12 @@
+#epreuves_mathematiques.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, BELTZUNG-SÖRENSEN Gwenaël. Ce fichier importe d'abord le module random.
+# Ce fichier permis de choisir aléatoirement une épreuve mathématique parmi trois épreuves mathématiques,
+# de calculer le résultat pour chaque épreuve suivant celle qui a été déterminée et de comparer la réponse du candidat
+# avec la réponse de la machine, le programme renvoie true si la bonne réponse a été trouvé sinon false.
+
+
 import random
 
-#Cette fonction permet de sélectionner au hasard une des trois épreuves de maths.
+#Cette fonction permet de sélectionner au hasard une des trois épreuves de maths grâce à la fonction random.choice puis la renvoie.
 def epreuve_math():
     epreuves = ["equation_lineaire", "nombre_premier", "roulette_mathematique"]
     epreuve = random.choice(epreuves)
@@ -12,6 +18,7 @@ def epreuve_math():
         return epreuve_roulette_mathematique()
 
 #Première épreuve de math : résolution d'équation linéaire.
+
 #Cette fonction permet de générer aléatoirement deux entiers a et b compris ente 1 et 10 inclus grâce à la fonction
 # random.randint() et de déterminer la valeur de x telle que ax+b = 0, elle renvoie ensuite a, b et x.
 def resoudre_equation_lineaire():
@@ -44,7 +51,7 @@ def epreuve_math_equation():
 
 #Deuxième épreuve de math : détermination du nombre premier (supérieur ou égale) le plus proche d'un entier n.
 
-#Cette fonction permet de définir si un entier n passé en paramètre est un nombre premier.
+#Cette fonction permet de définir si un entier n passé en paramètre est un nombre premier et retourne True si oui sinon il retourne False.
 def est_premier(n):
     multiple = 0
     for i in range(2, n):
@@ -55,8 +62,7 @@ def est_premier(n):
     else:
         return True
 
-#Cette fonction appelle la fonction est_premier(n) et permet de retourner le nombre premier supérieur ou égal à n
-# le plus proche.
+#Cette fonction appelle la fonction est_premier(n) et permet de retourner le nombre premier supérieur ou égal à n le plus proche.
 def premier_plus_proche(n):
     if est_premier(n):
         return n
