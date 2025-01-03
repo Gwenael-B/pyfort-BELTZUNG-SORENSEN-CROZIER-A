@@ -3,8 +3,8 @@
 
 #Cette fonction affiche juste un message d'introduction pour signaler l'arrivée dans le jeu et son déroulement
 def introduction():
-    print("Bonjour et bienvenue dans FORT BOYARD SIMULATOR.\nVous allez faire face à 4 défis. Pour chaque défi remporté, vous gagnerez une clé.\nIl vous faut obtenir au minimum 3 clés pour espérer accéder à la salle du trésor.")
-    print("Vous aurez une épreuve de mathématiques, une épreuve de hasard, une épreuve de logique et enfin l'énigme de père Fouras.\n")
+    print("Bonjour et bienvenue dans FORT BOYARD SIMULATOR.\nVous allez faire face à 4 défis.\nPour chaque défi remporté, vous gagnerez une clé.\nIl vous faut obtenir au minimum 3 clés pour espérer accéder à la salle du trésor.")
+    print("Vous aurez à choisir parmi une épreuve de mathématiques, une épreuve de hasard, une épreuve de logique, une épreuve de pendu et enfin l'énigme de père Fouras.\n")
 
 #Cette fonction permet au joueur de choisir une épreuve. Elle prend en argument la liste des épreuves disponibles pour permettre
 # au joueur de choisir l'épreuve qu'il souhaite puis la supprime dans la liste des épreuves disponibles. La fonction
