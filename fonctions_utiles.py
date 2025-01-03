@@ -32,8 +32,24 @@ def composer_equipe():
     verif_leader = False  #Création de la variable pour vérifier si l'un des joueurs est déjà leader
     equipe = []  #Initialisation de la liste équipe qui contiendra les infos des joueurs
     for i in range(int(nb_joueurs)):
-        nom = input("Entrez le nom du joueur {} : ".format(i+1))
-        profession = input("Entrez la profession du joueur {} : ".format(i+1))
+        pipe = False
+        nom = input("Entrez le nom du joueur {} sans caractère '|' : ".format(i+1))
+        while not(pipe):
+            for j in range(len(nom)):
+                if nom[j] == '|':
+                    nom = input("Veuillez réessayer sans caractère '|' : ")
+                    break
+            else:
+                pipe = True
+        profession = input("Entrez la profession du joueur {} sans caractère '|': ".format(i+1))
+        pipe = False
+        while not(pipe):
+            for j in range(len(profession)):
+                if profession[j] == '|':
+                    profession = input("Veuillez réessayer sans caractère '|' : ")
+                    break
+            else:
+                pipe = True
         if not verif_leader:  #Si il n'y a eu aucun leader on rentre dans la boucle et on demande si le joueur est le leader
             leader = input("Ce joueur est-il le leader (répondez par oui ou non) : ")
             while leader not in ["oui", "non"]:
@@ -76,16 +92,18 @@ def enregistrer_historique(nom, profession, nb_cle, nb_victoire):
         f.readline()  #Saute les deux premières lignes car elles ne contiennent pas d'informations, elles servent juste à rendre les valeurs plus visibles
         f.readline()
         for ligne in f:  #On parcourt chaque ligne du fichier historique en partant de la troisième
-            ligne = ligne.split()  #On utilise la fonction split pour séparer les mots
-            dico_joueur = {"nom": ligne[0], "profession" : ligne[2], "nb_cle": int(ligne[4]), "nb_victoire": int(ligne[6])}  #Initialisation du dictionnaire qui contient toutes les données d'un joueur ligne par ligne
+            ligne = ligne.split('|')  #On utilise la fonction split pour séparer les mots
+            dico_joueur = {"nom": ligne[0].strip(), "profession" : ligne[1].strip(), "nb_cle": int(ligne[2]), "nb_victoire": int(ligne[3])}  #Initialisation du dictionnaire qui contient toutes les données d'un joueur ligne par ligne
             dico_principal[i] = dico_joueur  #On ajoute ce dictionnaire au dictionnaire principal qui contiendra toutes les informations
             i = i + 1
+        joueur_trouve = False
         for i in range(len(dico_principal)):  #On parcourt le dictionnaire principal
             if dico_principal[i]["nom"] == nom:  #On vérifie si le joueur donné comme argument de la fonction est déjà dans le dictionnaire principal
                 dico_principal[i]["nb_cle"] = int(dico_principal[i]["nb_cle"]) + nb_cle  #On ajoute le nombre de clés qu'il a obtenus au nombre de clés déjà présents
                 dico_principal[i]["nb_victoire"] = int(dico_principal[i]["nb_victoire"]) + nb_victoire  #Pareil pour le nombre de victoires
+                joueur_trouve = True
                 break  #On sort de la boucle for pour ne pas parcourir tous les dictionnaires des joueurs une fois qu'on a trouvé le bon
-        else:  #Si le nom du joueur mis comme argument dans la fonction n'est pas encore dans le dictionnaire principal, on le rajoute
+        if not(joueur_trouve):  #Si le nom du joueur mis comme argument dans la fonction n'est pas encore dans le dictionnaire principal, on le rajoute
             dico_principal[len(dico_principal)] = {"nom": nom, "profession": profession, "nb_cle": nb_cle, "nb_victoire": nb_victoire}
     with open("data/historique.txt", "w", encoding='utf8') as f:  #On ouvre maintenant le fichier historique en écriture pour modifier les informations des joueurs
         f.write(f"{'Nom':^11} {"|"} {'Profession':^12} {"|"} {'Cles':^6} {"|"} {'Victoires':^5}\n")  #On réécrit la mise en page comme le fichier est compressé en ouvrture, les :^nombre servent à aligner les mots
