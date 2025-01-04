@@ -93,7 +93,7 @@ def enregistrer_historique(nom, profession, nb_cle, nb_victoire):
         f.readline()
         for ligne in f:  #On parcourt chaque ligne du fichier historique en partant de la troisième
             ligne = ligne.split('|')  #On utilise la fonction split pour séparer les mots
-            dico_joueur = {"nom": ligne[0].strip(), "profession" : ligne[1].strip(), "nb_cle": int(ligne[2]), "nb_victoire": int(ligne[3])}  #Initialisation du dictionnaire qui contient toutes les données d'un joueur ligne par ligne
+            dico_joueur = {"nom": ligne[0].strip(), "profession" : ligne[1].strip(), "nb_cle": int(ligne[2]), "nb_victoire": int(ligne[3])}  #Initialisation du dictionnaire qui contient toutes les données d'un joueur ligne par ligne. La fonction .strip permet d'enlever les espaces au début et à la fin d'une chaîne de caractère
             dico_principal[i] = dico_joueur  #On ajoute ce dictionnaire au dictionnaire principal qui contiendra toutes les informations
             i = i + 1
         joueur_trouve = False
