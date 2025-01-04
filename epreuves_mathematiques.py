@@ -1,7 +1,7 @@
 #epreuves_mathematiques.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, BELTZUNG-SÖRENSEN Gwenaël. Ce fichier importe d'abord le module random.
-# Ce fichier permis de choisir aléatoirement une épreuve mathématique parmi trois épreuves mathématiques,
+# Ce fichier permet de choisir aléatoirement une épreuve mathématique parmi trois épreuves mathématiques,
 # de calculer le résultat pour chaque épreuve suivant celle qui a été déterminée et de comparer la réponse du candidat
-# avec la réponse de la machine, le programme renvoie true si la bonne réponse a été trouvé sinon false.
+# avec la réponse de la machine, le programme renvoie true si la bonne réponse a été trouvée sinon false.
 
 
 import random
@@ -49,7 +49,7 @@ def epreuve_math_equation():
         print("Incorrect! Vous ne gagnez pas la clé, la réponse était : ", x)
         return False
 
-#Deuxième épreuve de math : détermination du nombre premier (supérieur ou égale) le plus proche d'un entier n.
+#Deuxième épreuve de math : détermination du nombre premier supérieur ou égal à n le plus proche.
 
 #Cette fonction permet de définir si un entier n passé en paramètre est un nombre premier et retourne True si oui sinon il retourne False.
 def est_premier(n):
@@ -83,7 +83,7 @@ def premier_plus_proche(n):
 def epreuve_math_premier():
     n = random.randint(10,20)
     reponse_machine = premier_plus_proche(n)
-    print("Trouver le nombre premier supérieur ou égale le plus proche de ", n)
+    print("Trouvez le nombre premier supérieur ou égal à", n, "le plus proche.")
     while True:
         try:
             reponse_candidat = int(input("Votre réponse : "))
@@ -97,7 +97,7 @@ def epreuve_math_premier():
         print("Incorrect! Vous ne gagnez pas la clé, la réponse était : ", reponse_machine)
         return False
 
-#Troisième épreuve de math : roulette mathematique, calculs entre 5 entiers (addition, soustraction ou multiplication).
+#Troisième épreuve de math : roulette mathématique, calculs entre 5 entiers (addition, soustraction ou multiplication).
 
 #Cette fonction permet de créer une liste de 5 entiers compris entre 1 et 20 inclus grâce à la fonction random.randint(),
 # elle permet ensuite de choisir aléatoirement entre l'addition, la soustraction ou la multiplication grâce à la
@@ -119,7 +119,7 @@ def epreuve_roulette_mathematique():
             reponse_machine = reponse_machine - Liste_nb_roulette[i]
         else:
             reponse_machine = reponse_machine * Liste_nb_roulette[i]
-    print("Nombres sur la roulette : ", Liste_nb_roulette[:], "\nCalculer le résultat en combinant ces nombres avec une ", operation)
+    print("Nombres sur la roulette : ", Liste_nb_roulette[:], "\nCalculez le résultat en combinant ces nombres avec une ", operation)
     while True:
         try:
             reponse_candidat = int(input("Votre réponse : "))

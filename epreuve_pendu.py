@@ -1,9 +1,9 @@
 #epreuves_pendu.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, BELTZUNG-SÖRENSEN Gwenaël. Ce fichier importe les modules random et json.
-# Il permet d’effectuer l'épreuve de pendu. Le programme saisie d'abord un mot de manière aléatoire dans le fichier
+# Il permet d’effectuer l'épreuve du pendu. Le programme saisit d'abord un mot de manière aléatoire dans le fichier
 # liste_mot_pendu.json puis demande au joueur s’il veut saisir une lettre ou un mot. Le programme vérifie ensuite
-# si la lettre choisie est dans le mot qui a été défini après l'avoir transformé en minuscule sans accent,
+# si la lettre choisie est dans le mot qui a été défini après l'avoir transformé en minuscules sans accent,
 # si le joueur a choisi de saisir un mot le programme le compare également en minuscule et sans accent
-# au mot choisis de manière aléatoire en minuscule et sans accent. Enfin, si la réponse est correcte,
+# au mot choisi de manière aléatoire en minuscules et sans accent. Enfin, si la réponse est correcte,
 # le programme renvoie true sinon il renvoie false.
 
 
@@ -16,7 +16,7 @@ def chargement_enigmes():
         liste_mots = json.load(fichier_mots)
         return liste_mots
 
-#Transforme la lettre prise en paramètre et le retourne sans accent et en minuscule.
+#Transforme la lettre prise en paramètre et la retourne sans accent et en minuscule.
 def remplace_lettre(lettre):
     #Lettre a.
     if 224 <= ord(lettre) <= 229:
@@ -37,7 +37,7 @@ def remplace_lettre(lettre):
     else:
         return lettre
 
-#Transforme le mot pris en paramètre et leretourne sans accent et en minuscule.
+#Transforme le mot pris en paramètre et le retourne sans accent et en minuscules.
 def mot_simplifie(mot):
     mot_simple = ""
     for i in range(len(mot)):
@@ -49,13 +49,13 @@ def saisie_choix_joueur():
     choix_joueur = 0
     while True:
         try:
-            choix_joueur = int(input("\nSi vous voulez écrire une lettre saisissez 1, si vous voulez saisir un mot saisissez 2 : "))
+            choix_joueur = int(input("\nSi vous voulez écrire une lettre saisissez 1, si vous voulez écrire un mot saisissez 2 : "))
             if choix_joueur == 1 or choix_joueur == 2:
                 return choix_joueur
         except ValueError:
             print("Votre réponse n'est pas valide.")
 
-#Fonction qui vérifie que la lettre saisie par le joueur est correcte et la convertie en minuscule puis la renvoie.
+#Fonction qui vérifie que la lettre saisie par le joueur est correcte et la convertit en minuscules puis la renvoie.
 def saisie_lettre_joueur():
     while True:
         try:
@@ -69,19 +69,19 @@ def saisie_lettre_joueur():
         except ValueError:
             print("Votre réponse n'est pas valide.")
 
-#Fonction qui saisie et converti le mot final du joueur en minuscule et le retourne.
+#Fonction qui saisit et convertit le mot final du joueur en minuscules et le retourne.
 def saisie_mot_joueur():
     mot_joueur = input("Saisissez votre mot. ")
     mot_final_joueur = ""
     for i in range(len(mot_joueur)):
-        # Transformation de la réponse du joueur tout en minuscule dans la variable mot_final_joueur.
+        # Transformation de la réponse du joueur tout en minuscules dans la variable mot_final_joueur.
         if 65 <= ord(mot_joueur[i]) <= 91 or 192 <= ord(mot_joueur[i]) <= 223:
             mot_final_joueur = mot_final_joueur + chr(ord(mot_joueur[i]) + 32)
         else:
             mot_final_joueur = mot_final_joueur + mot_joueur[i]
     return mot_final_joueur
 
-#Cette fonction retourne une chaine de charactère où sont présentes les lettres utilisées et leur position dans le mot.
+#Cette fonction retourne une chaine de caractères où sont présentes les lettres utilisées et leur position dans le mot.
 def affichage_lettre_trouvees(lettres_utilisees, mot):
     lettre = {}
     affichage = ""
@@ -94,7 +94,7 @@ def affichage_lettre_trouvees(lettres_utilisees, mot):
         affichage += valeur
     return affichage
 
-#Cette fonction permet d'afficher le pendu en fonction du nombre de tentatives déja effectuées, saisie en paramètre,
+#Cette fonction permet d'afficher le pendu en fonction du nombre de tentatives déja effectuées, saisi en paramètre,
 # elle retourne un espace pour plus de lisibilité.
 def affichage_pendu(tentatives):
     mat_verticale = " |  "
@@ -157,13 +157,13 @@ def jeu_pendu():
             lettres_utilisees.append(remplace_lettre(lettre_joueur))
             #Affiche les lettres trouvées dans le mot sinon un tiret.
             print(affichage_lettre_trouvees(lettres_utilisees, mot))
-            #Vérifie si la lettre est dans le mot et si non, décrémentation du nombre de tentatives.
+            #Vérifie si la lettre est dans le mot et sinon, décrémentation du nombre de tentatives.
             if remplace_lettre(lettre_joueur) not in mot:
                 tentatives += 1
                 print("La lettre n'est pas dans le mot :")
             #Affiche l'avancée du pendu.
             print(affichage_pendu(tentatives))
-            #Vérification si toutes les lettres correspondent à celle du mot et message correspondant.
+            #Vérification si toutes les lettres correspondent à celles du mot et message correspondant.
             if affichage_lettre_trouvees(lettres_utilisees, mot) == mot:
                 print("\nBravo, vous avez gagné !")
                 return True
@@ -182,12 +182,12 @@ def jeu_pendu():
                 print("\nBravo, vous avez gagné !")
                 return True
             else:
-                print("\nDésolé, vous n'avez pas trouver le mot qui était : ", mot_choisi)
+                print("\nDésolé, vous n'avez pas trouvé le mot qui était : ", mot_choisi)
                 return False
     #Vérification si réponse juste affichage du message correspondant.
     if mot_simplifie(affichage_lettre_trouvees(lettres_utilisees, mot)) == mot_simplifie(mot):
         print("\nBravo, vous avez gagné !")
         return True
     else:
-        print("\nDésolé, vous n'avez pas trouver le mot qui était : ", mot_choisi)
+        print("\nDésolé, vous n'avez pas trouvé le mot qui était : ", mot_choisi)
         return False

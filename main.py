@@ -1,9 +1,9 @@
 #main.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, BELTZUNG-SÖRENSEN Gwenaël. Ce fichier coordonne et exécute le jeu dans sa généralité,
 # il appelle tout d'abord l'ensemble des fonctions épreuves. Il choisit ensuite une épreuve de manière aléatoire
-# puis l'exécute si elle retourne true alors la variable résultats vos true et le joueur gagne une clé sinon il ne gagne pas de clé.
+# puis l'exécute si elle retourne true alors la variable résultat vaut true et le joueur gagne une clé sinon il ne gagne pas de clé.
 # Enfin, si l'équipe a au moins trois clés, elle peut accéder à la salle du trésor si salle_De_tresor vaut true alors,
 # le jeu est gagné et un message de victoire est affiché sinon un message de défaite est affiché.
-# Cette fonction ne retourne rien car elle n'est pas utilisé par une autre fonction ensuite.
+# Cette fonction ne retourne rien car elle n'est pas utilisée par une autre fonction ensuite.
 
 
 #Importation de toutes les fonctions qui sont des épreuves.
@@ -15,14 +15,14 @@ from epreuve_pendu import jeu_pendu
 from enigme_pere_fouras import enigme_pere_fouras
 from epreuve_finale import salle_De_Tresor
 
-#C'est le programme principal.
+#Programme principal.
 def jeu():
     introduction()
     equipe = composer_equipe()
     clef = 0
     compteur_epreuve = 4
-    liste_epreuve = ["Epreuve de Mathématiques", "Epreuve de Logique", "Epreuve du hasard", "Epreuve du pendu", "Enigme du Père Fourras"]
-    #Condition qui permet de vérifier si le joueur a trois clés ou s'il n'a plus d'éssais réstants.
+    liste_epreuve = ["Epreuve de Mathématiques", "Epreuve de Logique", "Epreuve du hasard", "Epreuve du pendu", "Enigme du Père Fouras"]
+    #Condition qui permet de vérifier si le joueur a trois clés ou s'il n'a plus d'essai restant.
     while clef != 3 and compteur_epreuve > 0:
         num_epreuve, liste_epreuve = menu_epreuves(liste_epreuve)
         joueur_choisi = choisir_joueur(equipe)
@@ -38,9 +38,9 @@ def jeu():
                 resultat = epreuve_hasard()
             case 'Epreuve du pendu':
                 resultat = jeu_pendu()
-            case 'Enigme du Père Fourras':
+            case 'Enigme du Père Fouras':
                 resultat = enigme_pere_fouras()
-        #Si resultat vaut True, en l'enregistre dans l'historique et affiche le nombre de clé(s) gagnée.
+        #Si resultat vaut True, on l'enregistre dans l'historique et affiche le nombre de clé(s) gagnée(s).
         if resultat:
             enregistrer_historique(joueur_choisi["nom"], joueur_choisi["profession"], 1, 0)
             clef += 1
@@ -48,9 +48,9 @@ def jeu():
             print("Vous avez maintenant", clef, "clé.\n")
         else:
             print("Vous avez maintenant", clef, "clés.\n")
-        #Décrémentation du nombre de jeu que le joueur peu faire pour obtenir les 3 clés.
+        #Décrémentation du nombre de jeu que le joueur peut faire pour obtenir les 3 clés.
         compteur_epreuve -= 1
-    #Si le joueur a obtenu au moins 3 clés, il accède à la "salle du trésor" et s'il réussi un message de victoire est affiché.
+    #Si le joueur a obtenu au moins 3 clés, il accède à la "salle du trésor" et s'il réussit un message de victoire est affiché.
     #L'historique est également mis à jour.
     if clef >= 3:
         if salle_De_Tresor():

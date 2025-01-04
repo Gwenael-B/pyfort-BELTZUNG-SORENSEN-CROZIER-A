@@ -1,10 +1,10 @@
 #fonctions_utiles.py, pyfort-BELTZUNG-SORENSEN-CROZIER-A, CROZIER Clarence. Ce fichier comporte des
-# fonctions utiles au bon déroulement du jeu et qui seront ensuite utilisé dans le main
+# fonctions utiles au bon déroulement du jeu et qui seront ensuite utilisées dans le main.
 
 #Cette fonction affiche juste un message d'introduction pour signaler l'arrivée dans le jeu et son déroulement
 def introduction():
     print("Bonjour et bienvenue dans FORT BOYARD SIMULATOR.\nVous allez faire face à 4 défis.\nPour chaque défi remporté, vous gagnerez une clé.\nIl vous faut obtenir au minimum 3 clés pour espérer accéder à la salle du trésor.")
-    print("Vous aurez à choisir parmi une épreuve de mathématiques, une épreuve de hasard, une épreuve de logique, une épreuve de pendu et enfin l'énigme de père Fouras.\n")
+    print("Vous aurez à choisir parmi une épreuve de mathématiques, une épreuve de hasard, une épreuve de logique, une épreuve de pendu et enfin l'énigme du père Fouras.\n")
 
 #Cette fonction permet au joueur de choisir une épreuve. Elle prend en argument la liste des épreuves disponibles pour permettre
 # au joueur de choisir l'épreuve qu'il souhaite puis la supprime dans la liste des épreuves disponibles. La fonction
@@ -15,13 +15,13 @@ def menu_epreuves(liste_epreuve):
     print("Choisissez une épreuve parmi les épreuves suivantes : \n")
     for i in range(len(L)):
         print(i+1, ".", L[i])
-    for i in range(len(L)):  #Remplis le tableau des choix possibles avec des caractères
+    for i in range(len(L)):  #Remplit le tableau des choix possibles avec des caractères
         C.append(str(i+1))
     choix = input("Choix : ")
     while choix not in C:
         choix = input("Erreur veuillez entrer un nombre correct : ")
     epreuve = L[int(choix)-1]
-    del L[int(choix)-1]  #Supprime l'épreuve qui a été choisi de la liste épreuve
+    del L[int(choix)-1]  #Supprime l'épreuve qui a été choisie dans la liste épreuve
     return epreuve, L
 
 #Cette fonction permet de composer les équipes. Elle ne prend pas d'arguments en entrée et retourne la liste des dictionnaires des joueurs
@@ -37,16 +37,16 @@ def composer_equipe():
         while not(pipe):
             for j in range(len(nom)):
                 if nom[j] == '|':
-                    nom = input("Veuillez réessayer sans caractère '|' : ")
+                    nom = input("Veuillez réessayer sans le caractère '|' : ")
                     break
             else:
                 pipe = True
-        profession = input("Entrez la profession du joueur {} sans caractère '|': ".format(i+1))
+        profession = input("Entrez la profession du joueur {} sans le caractère '|': ".format(i+1))
         pipe = False
         while not(pipe):
             for j in range(len(profession)):
                 if profession[j] == '|':
-                    profession = input("Veuillez réessayer sans caractère '|' : ")
+                    profession = input("Veuillez réessayer sans le caractère '|' : ")
                     break
             else:
                 pipe = True
@@ -61,28 +61,28 @@ def composer_equipe():
         equipe.append(joueur)  #Ajoute le dictionnaire du joueur à la liste équipe
     if not verif_leader:  #Vérifie si la variable verif_leader est fausse c'est-à-dire si aucun joueur n'a été mis leader, dans ce cas-là on rentre dans la boucle
         equipe[0]["leader"] = "oui"  #Met le premier joueur leader
-        print("Comme aucun joueur n'a été désigné leader, c'est le premier joueur soit", equipe[0]["nom"], "qui a été choisi leader.")
+        print("Comme aucun joueur n'a été désigné leader, c'est le premier joueur soit", equipe[0]["nom"], "qui est choisi leader.")
     return equipe
 
 #Cette fonction permet de choisir le joueur qui participera à une épreuve. Elle prend la liste des joueurs en arguments et retourne
 # le dictionnaire contenant toutes les informations du joueur choisi
 def choisir_joueur(equipe):
     taille = []  #initialise une liste pour contenir le choix du joueur, la liste va être remplie par les numéros des joueurs et dépend donc du nombre de joueurs
-    print("")  #Ecris une ligne vide pour faire un saut de ligne et afficher la liste de joueurs distinctes des autres informations
+    print("")  #Ecrit une ligne vide pour faire un saut de ligne et afficher la liste de joueurs séparément des autres informations
     for i in range(len(equipe)):  #Boucle du nombre de joueurs pour afficher à chaque ligne les informations des joueurs
         if equipe[i]["leader"] == "oui":  #Si le joueur i est le leader alors la variable leader prend l'information à afficher
             leader = "Leader"
         else:
             leader = "Membre"
         print("{}. {} ({}) - {} ".format(i+1, equipe[i]["nom"], equipe[i]["profession"], leader))  #Affiche les informations du joueur i
-        taille.append(str(i+1))  #Ajoute le numéro du joueur à la liste de choix possible pour sélectionner après le joueur que l'on veut
-    print("")  #Ecris une ligne vide pour faire un saut de ligne et afficher la liste de joueurs distinctes des autres informations
+        taille.append(str(i+1))  #Ajoute le numéro du joueur à la liste de choix possibles pour sélectionner après le joueur que l'on veut
+    print("")  #Ecrit une ligne vide pour faire un saut de ligne et afficher la liste de joueurs séparément des autres informations
     choix = input("Entrez le numéro du joueur souhaité : ")
     while choix not in taille:  #Tant que le choix du numéro du joueur n'est pas dans la liste cela signifie que le choix n'est pas valide, on redemande alors un numéro
         choix = input("Choix incorrect, veuillez réessayer : ")
     return equipe[int(choix)-1]
 
-#Cette fonction permet d'enregistrer l'historique. Elle prend en argument le nom, la profession, le nombre de clés et de victoire d'un
+#Cette fonction permet d'enregistrer l'historique. Elle prend en argument le nom, la profession, le nombre de clés et de victoires d'un
 # joueur mais elle ne retourne rien. Elle ouvre le fichier historique.txt d'abord en lecture seule pour récupérer les informations
 # déjà présentes puis elle l'ouvre ensuite en écriture pour réécrire toutes les informations
 def enregistrer_historique(nom, profession, nb_cle, nb_victoire):
@@ -98,15 +98,15 @@ def enregistrer_historique(nom, profession, nb_cle, nb_victoire):
             i = i + 1
         joueur_trouve = False
         for i in range(len(dico_principal)):  #On parcourt le dictionnaire principal
-            if dico_principal[i]["nom"] == nom:  #On vérifie si le joueur donné comme argument de la fonction est déjà dans le dictionnaire principal
-                dico_principal[i]["nb_cle"] = int(dico_principal[i]["nb_cle"]) + nb_cle  #On ajoute le nombre de clés qu'il a obtenus au nombre de clés déjà présents
+            if dico_principal[i]["nom"] == nom:  #On vérifie si le joueur, donné comme argument de la fonction, est déjà dans le dictionnaire principal
+                dico_principal[i]["nb_cle"] = int(dico_principal[i]["nb_cle"]) + nb_cle  #On ajoute le nombre de clés qu'il a obtenu au nombre de clés déjà présentes
                 dico_principal[i]["nb_victoire"] = int(dico_principal[i]["nb_victoire"]) + nb_victoire  #Pareil pour le nombre de victoires
                 joueur_trouve = True
                 break  #On sort de la boucle for pour ne pas parcourir tous les dictionnaires des joueurs une fois qu'on a trouvé le bon
         if not(joueur_trouve):  #Si le nom du joueur mis comme argument dans la fonction n'est pas encore dans le dictionnaire principal, on le rajoute
             dico_principal[len(dico_principal)] = {"nom": nom, "profession": profession, "nb_cle": nb_cle, "nb_victoire": nb_victoire}
     with open("data/historique.txt", "w", encoding='utf8') as f:  #On ouvre maintenant le fichier historique en écriture pour modifier les informations des joueurs
-        f.write(f"{'Nom':^11} {"|"} {'Profession':^12} {"|"} {'Cles':^6} {"|"} {'Victoires':^5}\n")  #On réécrit la mise en page comme le fichier est compressé en ouvrture, les :^nombre servent à aligner les mots
+        f.write(f"{'Nom':^11} {"|"} {'Profession':^12} {"|"} {'Cles':^6} {"|"} {'Victoires':^5}\n")  #On réécrit la mise en page comme le fichier est compressé en ouverture, les : ^nombre servent à aligner les mots
         f.write("------------------------------------------------\n")
         for i in range(len(dico_principal)):  #On parcourt notre dictionnaire principal
             ligne = f"{dico_principal[i]['nom']:^11} {"|"} {dico_principal[i]['profession']:^12} {"|"} {dico_principal[i]['nb_cle']:^6} {"|"} {dico_principal[i]['nb_victoire']:^7}\n"  #On prépare le texte à écrire dans la ligne comme f.write() ne prend qu'un argument
