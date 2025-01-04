@@ -23,7 +23,7 @@ Un fichier historique.txt enregistre l'historique de jeu.
 **Installation :** Ouvrez PyCharm, depuis l'écran d'accueil, cliquez sur "Get from Version Control" (ou allez dans File > Project from Version Control > Git). Dans le champ "URL", collez l'URL de votre repository GitHub que vous avez copiée, sélectionnez un dossier local où clonez le projet et cliquez sur "Clone". 
 Installez un éditeur python, par exemple pycharm : https://www.jetbrains.com/fr-fr/pycharm/download/?section=windows	
 	
-**Utilisation :** Double clique sur le fichier main.py
+**Utilisation :** Ouvrez votre éditeur python puis appuyer sur run pour le fichier main.py.
 
 
 **2. Documentation Technique** 
